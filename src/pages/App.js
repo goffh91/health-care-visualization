@@ -125,7 +125,23 @@ const App = props => {
                     rowExpandable: record => true,
                     expandedRowRender: record => {
                         if (expanded.includes(record.person_id)) {
-                            
+                            const visits = visit.filter(v => Number(v.person_id) === record.person_id);
+                            const conditions = condition.filter(c => Number(c.person_id) === record.person_id);
+                            return (
+                                <ContentWrapper>
+                                    <p>전체 방문 수: {visits.length}</p>
+                                    <p>진단 정보</p>
+                                    {conditions.length > 0 && (
+                                        <ul>
+                                            {conditions.map((condition, key) => 
+                                                <li key={key}>
+                                                    {condition.condition_occurrence_id}
+                                                </li>
+                                            )}
+                                        </ul>
+                                    )}
+                                </ContentWrapper>
+                            );
                         }
                     },
                 }}
@@ -138,6 +154,10 @@ const ChartWrapper = styled.div`
     canvas {
         margin: 10px 0 40px;
     }
+`;
+
+const ContentWrapper = styled.div`
+    padding: 20px 60px 10px;
 `;
 
 const mapStateToProps = state => ({
