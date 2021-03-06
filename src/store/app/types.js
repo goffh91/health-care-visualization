@@ -1,0 +1,3 @@
+export const CHANGE_PAGINATION = 'CHANGE_PAGINATION';
+export const CHANGE_SORTER = 'CHANGE_SORTER';
+export const VIEW_DETAIL = 'VIEW_DETAIL';
